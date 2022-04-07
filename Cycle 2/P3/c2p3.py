@@ -58,10 +58,10 @@ for Species in species:
       if (j['sepalLength'] * j['sepalWidth']) > Msa[ctrl1]:
         Msa[ctrl1] = round(j['sepalLength']* j['sepalWidth'],2)
   ctrl1+=1
-
-print("Species\tMinPetalArea\tMaxSepalArea\n")
+print("\n\n")
+print("Species - MinPetalArea - MaxSepalArea\n")
 for i in range(0,3):
-  print(species[i],"\t\t",Mpa[i],"\t",Msa[i],"\n")
+  print(species[i]," - ",Mpa[i]," - ",Msa[i],"\n")
 #Sort the list of dictionaries according to the total area are sepal and petal
 
 #To create a new attribute Total Area 
@@ -81,7 +81,6 @@ for _ in data:
 #Print the Total Area as a Table
 print("sepalLength\tsepalWidth\tpetalLength\tpetalWidth\tTotalArea")      
 for i in data:
-  if i['species'] == 'setosa':
-    print(i['sepalLength'],"\t\t",i['sepalWidth'],"\t\t",i['petalLength'],end ="")
+    print(i['sepalLength'],"\t\t",i['sepalWidth'],"\t\t",i['petalLength'],end = " ")
     print("\t\t",i['petalWidth'],"\t\t",i['TotalArea'])
 
