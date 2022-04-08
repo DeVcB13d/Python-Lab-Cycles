@@ -16,7 +16,7 @@ rabbits in the first N months
 """
 #Function to return a list with N fibbonacci numbers
 def fib(N):
-  Flist = [0,1]
+  Flist = [0,1,1]
   a = 1
   b = 1
   for i in range(1, N):
@@ -29,14 +29,16 @@ def fib(N):
 
 #Function to make a table for N months
 
-def make_table(N):
-  #The pair of rabbits each month follow fibbonacci series
+def Pair_Details(N):
   l1 = fib(N)
-  print("Month\tPairs")
-  for i in range(0,N+1):
-    print(i,"\t",l1[i])
+  print("+","-"*5,"+","-"*6,"+")
+  print("| Month | Pairs  |")
+  print("+","-"*5,"+","-"*6,"+")
+  for i in range(1,N+1):
+    print("|%6d | %6d |"%(i,l1[i]))
+  print("+","-"*5,"+","-"*6,"+")
 
 #main function
 Nr = int(input("Enter the number of rabbits : "))
 print("Table\n\n")
-make_table(Nr)
+Pair_Details(Nr)

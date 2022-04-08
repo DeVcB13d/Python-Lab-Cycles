@@ -18,12 +18,9 @@ are sepal and petal.
 """
 
 #To open the file and read its data
+#into a List having each line of the file as an element
 f = open("iris.json","r")
-str_data = f.read()
-
-#List having each line of the file as an element
-Line_list = str_data.split("\n")
-f.close()
+str_data = f.readlines()
 
 #Conversion into a list of dictionary objects
 f = open("iris.json","r")
