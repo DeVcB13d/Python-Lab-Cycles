@@ -29,16 +29,16 @@ def fib(N):
 
 #Function to make a table for N months
 
-def Pair_Details(N):
-  l1 = fib(N)
+def Table_Pair_Details(N_months):
+  l1 = fib(N_months)
   print("+","-"*5,"+","-"*6,"+")
   print("| Month | Pairs  |")
   print("+","-"*5,"+","-"*6,"+")
-  for i in range(1,N+1):
+  for i in range(1,N_months+1):
     print("|%6d | %6d |"%(i,l1[i]))
   print("+","-"*5,"+","-"*6,"+")
 
 #main function
 Nr = int(input("Enter the number of rabbits : "))
 print("Table\n\n")
-Pair_Details(Nr)
+Table_Pair_Details(Nr)
