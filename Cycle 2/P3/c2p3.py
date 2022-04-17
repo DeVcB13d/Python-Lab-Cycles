@@ -17,67 +17,99 @@ each species
 are sepal and petal.
 """
 
-#To open the file and read its data
-#into a List having each line of the file as an element
-f = open("iris.json","r")
-str_data = f.readlines()
+# To open the file and read its data
+# into a List having each line of the file as an element
 
-#Conversion into a list of dictionary objects
-f = open("iris.json","r")
-import json
-data = json.load(f)
-f.close()
 
-#Show the details of all flowers whose species is "setosa"
-print("details of all flowers whose species is 'setosa' \n")
-print("sepalLength\tsepalWidth\tpetalLength\tpetalWidth")
-for i in data:
-  if i['species'] == 'setosa':
-    print(i['sepalLength'],"\t\t",i['sepalWidth'],"\t\t",i['petalLength'],"\t\t",i['petalWidth'])
+def Read_line_List(filename):
+    f = open(filename, "r")
+    str_data = f.readlines()
+    return str_data
 
-#Print the minimum petal area and max sepal area in each species
-species = []
-#Collecting Unique Species
-for j in data:
-  if j['species'] not in species:
-    species.append(j['species'])
+# Conversion into a list of dictionary objects
 
-Mpa = list()
-Msa = list()
-ctrl1 = 0
-for Species in species:
-  Mpa.append(100)
-  Msa.append(0)
-  for j in data:
-    if j['species'] == Species:
-      if (j['petalLength'] * j['petalWidth']) < Mpa[ctrl1]:
-        Mpa[ctrl1] = round(j['petalLength'] * j['petalWidth'],2) 
-      if (j['sepalLength'] * j['sepalWidth']) > Msa[ctrl1]:
-        Msa[ctrl1] = round(j['sepalLength']* j['sepalWidth'],2)
-  ctrl1+=1
-print("\n\n")
-print("Species - MinPetalArea - MaxSepalArea\n")
-for i in range(0,3):
-  print(species[i]," - ",Mpa[i]," - ",Msa[i],"\n")
-#Sort the list of dictionaries according to the total area are sepal and petal
 
-#To create a new attribute Total Area 
-for i in data:
-  x = 0
-  TArea = i['sepalLength']*i['sepalWidth'] + i['petalLength']*i['petalWidth']
-  i['TotalArea'] = round(TArea,2)
+def Read_as_Dictionary(filename):
+    f = open("iris.json", "r")
+    import json
+    data = json.load(f)
+    f.close()
+    return data
 
-#TO sort the list of Dictionaries
-for _ in data:
-  for i in range(0,len(data)-1) :
-    d1 = data[i]
-    d2 = data[i+1]
-    if d1['TotalArea'] > d2['TotalArea']:
-      data[i],data[i+1] = data[i+1],data[i]
+# Show the details of all flowers whose species is "setosa"
 
-#Print the Total Area as a Table
-print("sepalLength\tsepalWidth\tpetalLength\tpetalWidth\tTotalArea")      
-for i in data:
-    print(i['sepalLength'],"\t\t",i['sepalWidth'],"\t\t",i['petalLength'],end = " ")
-    print("\t\t",i['petalWidth'],"\t\t",i['TotalArea'])
 
+def Show_Details_of_species(Data, name):
+    print("details of all flowers whose species is 'setosa' \n")
+    print("sepalLength\tsepalWidth\tpetalLength\tpetalWidth")
+    SpeciesData = []
+    for i in Data:
+        if i['species'] == name:
+            SpeciesData.append(i)
+    return SpeciesData
+
+
+def Min_Petal_Max_Sepal_Area(Data):
+    # Print the minimum petal area and max sepal area in each species
+    species = []
+    # Collecting Unique Species
+    for j in Data:
+        if j['species'] not in species:
+            species.append(j['species'])
+    Mpa = list()
+    Msa = list()
+    ctrl1 = 0
+    for Species in species:
+        Mpa.append(100)
+        Msa.append(0)
+        for j in Data:
+            if j['species'] == Species:
+                if (j['petalLength'] * j['petalWidth']) < Mpa[ctrl1]:
+                    Mpa[ctrl1] = round(j['petalLength'] * j['petalWidth'], 2)
+                if (j['sepalLength'] * j['sepalWidth']) > Msa[ctrl1]:
+                    Msa[ctrl1] = round(j['sepalLength'] * j['sepalWidth'], 2)
+        ctrl1 += 1
+    print("\n\n")
+    print("Species - MinPetalArea - MaxSepalArea\n")
+    for i in range(0, 3):
+        print(species[i], " - ", Mpa[i], " - ", Msa[i], "\n")
+
+
+# Sort the list of dictionaries according to the total area are sepal and petal
+def Sort_Total_Area(Data):
+    # To create a new attribute Total Area
+    for i in Data:
+        x = 0
+        TArea = i['sepalLength']*i['sepalWidth'] + \
+            i['petalLength']*i['petalWidth']
+        i['TotalArea'] = round(TArea, 2)
+    # TO sort the list of Dictionaries
+    Sort_data = sorted(Data, key=lambda i: i['TotalArea'])
+    return Sort_data
+
+
+def print_as_Table(Dict):
+    K = Dict[1].keys()
+    for i in K:
+        print(i, end="\t")
+    print()
+    for i in Dict:
+        for j in K:
+            print(i[j], end="\t\t")
+        print("\n")
+
+
+def main():
+    print("Eachline as element : \n")
+    lineList = Read_line_List("iris.json")
+    print(lineList)
+    IrisData = Read_as_Dictionary("iris.json")
+    print_as_Table(IrisData)
+    Setosa_Data = Show_Details_of_species(IrisData, "setosa")
+    print_as_Table(Setosa_Data)
+    Total_area_sortlist = Sort_Total_Area(IrisData)
+    print_as_Table(Total_area_sortlist)
+    Min_Petal_Max_Sepal_Area(IrisData)
+
+
+main()
