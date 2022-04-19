@@ -14,31 +14,36 @@ rabbits. Suppose that our rabbits never die and that the female always produces 
 rabbits in the first N months
 
 """
-#Function to return a list with N fibbonacci numbers
-def fib(N):
-  Flist = [0,1,1]
-  a = 1
-  b = 1
-  for i in range(1, N):
-    t = a 
-    b = a + b
-    a = b
-    b = t
-    Flist.append(a)
-  return Flist
+# Function to return a list with N fibbonacci numbers
 
-#Function to make a table for N months
+
+def fib(N):
+    Flist = [0, 1, 1]
+    a = 1
+    b = 1
+    for i in range(1, N):
+        t = a
+        b = a + b
+        a = b
+        b = t
+        Flist.append(a)
+    return Flist
+
+# Function to make a table for N months
+
 
 def Pair_Details(N):
-  l1 = fib(N)
-  print("+","-"*5,"+","-"*6,"+")
-  print("| Month | Pairs  |")
-  print("+","-"*5,"+","-"*6,"+")
-  for i in range(1,N+1):
-    print("|%6d | %6d |"%(i,l1[i]))
-  print("+","-"*5,"+","-"*6,"+")
+    l1 = fib(N)
+    print("+", "-"*5, "+", "-"*6, "+")
+    print("| Month | Pairs  |")
+    print("+", "-"*5, "+", "-"*6, "+")
+    for i in range(1, N+1):
+        print("|%6d | %6d |" % (i, l1[i]))
+    print("+", "-"*5, "+", "-"*6, "+")
 
-#main function
-Nr = int(input("Enter the number of rabbits : "))
-print("Table\n\n")
-Pair_Details(Nr)
+
+# main function
+def main():
+    Nr = int(input("Enter the number of rabbits : "))
+    print("Table\n\n")
+    Pair_Details(Nr)

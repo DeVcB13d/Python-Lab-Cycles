@@ -13,17 +13,21 @@ area enclosed by both triangles and each triangle's contribution (%)
 towards it.
 """
 
-def Area(a,b,c):
-  s = (a+b+c)/2
-  Area_1 = ((s*(s-a)*(s-b)*(s-c))**(1/2))
-  return Area_1
-def  perc_contrib(Ar,ar1,ar2):
-  p1 = round((ar1/Ar)*100,4)
-  print("Triangle 1 gives ",p1,"% of the total area")
-  p2 = round((ar2/Ar)*100,4)
-  print("Triangle 2 gives ",p2,"% of the total area")
 
-#inputs of triangle 
+def Area(a, b, c):
+    s = (a+b+c)/2
+    Area_1 = ((s*(s-a)*(s-b)*(s-c))**(1/2))
+    return Area_1
+
+
+def perc_contrib(Ar, ar1, ar2):
+    p1 = round((ar1/Ar)*100, 4)
+    print("Triangle 1 gives ", p1, "% of the total area")
+    p2 = round((ar2/Ar)*100, 4)
+    print("Triangle 2 gives ", p2, "% of the total area")
+
+
+# inputs of triangle
 print("Enter the side lengths of triangle 1")
 A1 = int(input("side1 : "))
 A2 = int(input("side2 : "))
@@ -34,15 +38,14 @@ B1 = int(input("side1 : "))
 B2 = int(input("side2 : "))
 B3 = int(input("side3 : "))
 
-#Total area
+# Total area
 
-Ar1 = Area(A1,A2,A3) 
-Ar2 = Area(B1,B2,B3)
+Ar1 = Area(A1, A2, A3)
+Ar2 = Area(B1, B2, B3)
 
 
-
-#Percentage contributions
+# Percentage contributions
 
 T_area = Ar1 + Ar2
-print("Total Area = ",T_area)
-perc_contrib(T_area,Ar1,Ar2)
+print("Total Area = ", T_area)
+perc_contrib(T_area, Ar1, Ar2)

@@ -21,60 +21,66 @@ final list
 create a single sorted list
 """
 
-#Converting String containing numbers separated by a space to list of integers
+# Converting String containing numbers separated by a space to list of integers
 def conv_to_list(str1):
-  l = str1.split()
-  for i in range(0,len(l)):
-    l[i] = int(l[i])    
-  return l
+    l = str1.split()
+    for i in range(0, len(l)):
+        l[i] = int(l[i])
+    return l
 
-#Rotate elements by K positions
-def Rotate_by_K(L,K):
-  ret = list()
-  K_eff = K%len(L)
-  ret = L[K_eff:]
-  ret += L[:K_eff]
-  return ret
+# Rotate elements by K positions
+def Rotate_by_K(L, K):
+    ret = list()
+    K_eff = K % len(L)
+    ret = L[K_eff:]
+    ret += L[:K_eff]
+    return ret
 
-#Convert the list into a tuple using list comprehension
+# Convert the list into a tuple using list comprehension
 def conv_to_tuple(l):
-  l2 = tuple(i for i in l )
-  return l2
+    l2 = tuple(i for i in l)
+    return l2
 
-#Create another list by putting the results of the evaluation of the 
-#function 𝑓(𝑥) = 𝑥 2 – 𝑥 with each element in the final list
+# Create another list by putting the results of the evaluation of the
+# function 𝑓(𝑥) = 𝑥 2 – 𝑥 with each element in the final list
 def SqFn(L):
-  Lt = [x for x in L]
-  Lret = [0 for y in L]
-  for i in range(0,len(Lt)):
-    xt = ((Lt[i])**2) - Lt[i]
-    Lret[i] = xt
-  return Lret
+    Lt = [x for x in L]
+    Lret = [0 for y in L]
+    for i in range(0, len(Lt)):
+        xt = ((Lt[i])**2) - Lt[i]
+        Lret[i] = xt
+    return Lret
 
-#After sorting them individually merge the two lists to create a single sorted list
-def sort_and_merge(L1,L2):
-  L1.sort()
-  L2.sort()
-  L3 = L1 + L2
-  L3.sort()
-  return L3
+# After sorting them individually merge the two lists to create a single sorted list
 
-#Main Function
 
-In_Str = input("Enter Numbers Seperated by a Space : ")
-Int_List = conv_to_list(In_Str)
-print(Int_List)
-k = int(input("Enter value to rotate the list : "))
-Rot_List=Rotate_by_K(Int_List,k)
-print("List Rotated By ",k,"is : ")
-print(Rot_List)
-print("Converting into tuple : ")
-Tup_convrt = conv_to_tuple(Int_List)
-print(Tup_convrt)
-print()
-print("Applying 𝑓(𝑥) = 𝑥 2 – 𝑥 with each element")
-Sq_list = SqFn(Int_List)
-print(Sq_list)
-print("After sorting and merging : ")
-Sort_list = sort_and_merge(Int_List,Sq_list)
-print(Sort_list)
+def sort_and_merge(L1, L2):
+    L1.sort()
+    L2.sort()
+    L3 = L1 + L2
+    L3.sort()
+    return L3
+
+# Main Function
+
+
+def main():
+    In_Str = input("Enter Numbers Seperated by a Space : ")
+    Int_List = conv_to_list(In_Str)
+    print(Int_List)
+    k = int(input("Enter value to rotate the list : "))
+    Rot_List = Rotate_by_K(Int_List, k)
+    print("List Rotated By ", k, "is : ")
+    print(Rot_List)
+    print("Converting into tuple : ")
+    Tup_convrt = conv_to_tuple(Int_List)
+    print(Tup_convrt)
+    print()
+    print("Applying 𝑓(𝑥) = 𝑥 2 – 𝑥 with each element")
+    Sq_list = SqFn(Int_List)
+    print(Sq_list)
+    print("After sorting and merging : ")
+    Sort_list = sort_and_merge(Int_List, Sq_list)
+    print(Sort_list)
+
+main()

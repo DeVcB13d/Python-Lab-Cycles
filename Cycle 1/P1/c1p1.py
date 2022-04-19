@@ -17,24 +17,45 @@ and the product of digits at the even position.
 ```
 """
 
-N = int(input("Enter a 4 digit number: "))
-#Extraction of digits
-d1 = N%10
-d2 =(N//10)%10
-d3 = (N//100)%10
-d4 = (N//1000)%10
 
-#To get sum of digits
+def sum_of_digits(N):
+    #Extraction of digits
+    d1 = N%10
+    d2 =(N//10)%10
+    d3 = (N//100)%10
+    d4 = (N//1000)%10
+    #To get sum of digits
+    sum = d1+d2+d3+d4
+    return sum
 
-sum = d1+d2+d3+d4
-print("Sum of Digits = ",sum)
-
-# To Find the reverse
-rev = d4 + d3*10 + d2*100 + d1*1000
-print("Reverse = ",rev)
+def reverse(N):
+    d1 = N%10
+    d2 =(N//10)%10
+    d3 = (N//100)%10
+    d4 = (N//1000)%10
+    # To Find the reverse
+    rev = d4 + d3*10 + d2*100 + d1*1000
+    return rev
 
 # To find Difference between the product of digits at the odd position
 # and the product of digits at the even position.
-diff = (d2*d4) - (d1*d3)
-print("Difference of digit product at the odd and position = ") 
-print(diff)
+def odd_even_pdt_diff(N):
+    d1 = N%10
+    d2 =(N//10)%10
+    d3 = (N//100)%10
+    d4 = (N//1000)%10
+    diff = (d2*d4) - (d1*d3)
+    return diff
+
+def main():
+    N = int(input("Enter a 4 digit number: "))
+    sum = sum_of_digits(N)
+    print("Sum of Digits = ",sum)
+    rev = reverse(N)
+    print("Reverse = ",rev)
+    diff = odd_even_pdt_diff(N)
+    print("Difference of digit product at the odd and position = ") 
+    print(diff)
+
+if __name__ == "__main__":
+    main()

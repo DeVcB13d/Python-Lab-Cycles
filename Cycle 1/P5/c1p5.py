@@ -7,63 +7,74 @@ Original file is located at
     https://colab.research.google.com/drive/1d2EgTQYfm-LDuLcm-4rJQTFMjY3_D1m2
 """
 
-#Funtion to print all possible substrings
+# Funtion to print all possible substrings
+
+
 def get_all_substrings(str1):
-  print("Substrings of ",str1,": ")
-  for i in range(0,len(str1)):
-    k = len(str1) - i
-    for j in range(i,k+i+1):
-      print(str1[i:j],end = " ")
+    print("Substrings of ", str1, ": ")
+    for i in range(0, len(str1)):
+        k = len(str1) - i
+        for j in range(i, k+i+1):
+            print(str1[i:j], end=" ")
 
-#Function to print all possible substrings of length K
-def subs_len(str1,K):
-  print("\nSubstrings of length",K)
-  for i in range(0,len(str1)+1):
-    k = len(str1) - i
-    for j in range(i,k+i+1):
-      stk = str1[i:j]
-      if len(stk) == K :
-        print(stk,end = " ")
+# Function to print all possible substrings of length K
 
-#Function to Print all possible substrings 
-#of length K with N distinct characters.
-def subs_lenK_uniN(str1,K,N):
-    print("\nSubstrings of length ", K ," with ", N ," distinct characters")
-    for i in range(0,len(str1)+1):
-      k = len(str1) - i
-      for j in range(i,k+i+1):
-        stk = str1[i:j]
-        if len(stk) == K :
-          set2 = set(stk)
-          if len(set2) == len(stk):
-            print(stk,end = " ")
 
-#Function to print substring of length maximum length with N distinct
-#characters
+def subs_len(str1, K):
+    print("\nSubstrings of length", K)
+    for i in range(0, len(str1)+1):
+        k = len(str1) - i
+        for j in range(i, k+i+1):
+            stk = str1[i:j]
+            if len(stk) == K:
+                print(stk, end=" ")
 
-def MaxlenN_distinct(str1,N):
-  print("\nSubstrings of length maximum length with ",N," distinct characters ")
-  for i in range(0,len(str1)+1):
-      k = len(str1) - i
-      for j in range(i,k+i+1):
-        stk = str1[i:j]
-        if len(stk) == N :
-          set2 = set(stk)
-          if len(set2) == len(stk):
-            print(stk,end = " ")
+# Function to Print all possible substrings
+# of length K with N distinct characters.
 
-#Function to print Palindrome substrings
+
+def subs_lenK_uniN(str1, K, N):
+    print("\nSubstrings of length ", K, " with ", N, " distinct characters")
+    for i in range(0, len(str1)+1):
+        k = len(str1) - i
+        for j in range(i, k+i+1):
+            stk = str1[i:j]
+            if len(stk) == K:
+                set2 = set(stk)
+                if len(set2) == len(stk):
+                    print(stk, end=" ")
+
+# Function to print substring of length maximum length with N distinct
+# characters
+
+
+def MaxlenN_distinct(str1, N):
+    print("\nSubstrings of length maximum length with ",
+          N, " distinct characters ")
+    for i in range(0, len(str1)+1):
+        k = len(str1) - i
+        for j in range(i, k+i+1):
+            stk = str1[i:j]
+            if len(stk) == N:
+                set2 = set(stk)
+                if len(set2) == len(stk):
+                    print(stk, end=" ")
+
+# Function to print Palindrome substrings
+
+
 def Palindrome_substrings(str1):
-  print("\nPalindrome substrings : ")
-  for i in range(0,len(str1)+1):
-    k = len(str1) - i
-    for j in range(i,k+i+1):
-      stk = str1[i:j]
-      stkrev = stk[::-1]
-      if stk == stkrev :
-        print(stk,end = " ")
+    print("\nPalindrome substrings : ")
+    for i in range(0, len(str1)+1):
+        k = len(str1) - i
+        for j in range(i, k+i+1):
+            stk = str1[i:j]
+            stkrev = stk[::-1]
+            if stk == stkrev:
+                print(stk, end=" ")
 
-#main function
+# main function
+
 
 st = input("Enter a string: ")
 k = int(input("Enter the value of K: "))
@@ -71,10 +82,10 @@ n = int(input("Enter the value if N: "))
 print()
 get_all_substrings(st)
 print()
-subs_len(st,k)
+subs_len(st, k)
 print()
-subs_lenK_uniN(st,k,n)
+subs_lenK_uniN(st, k, n)
 print()
-MaxlenN_distinct(st,n)
+MaxlenN_distinct(st, n)
 print()
 Palindrome_substrings(st)

@@ -13,35 +13,40 @@ respectively. Create classes Cylinder and Sphere by inheriting
 volume and area of a cylinder and sphere.
 """
 
-#Declaring Base class 3D shapes
-class Shapes3D:
-  def printVolume(self):
-    print("Volume  : ",self.volume)
-  def printArea(self):
-    print("Surface Area : ",self.area)
+# Declaring Base class 3D shapes
 
-#Deriving Cylinder and Sphere classes
+
+class Shapes3D:
+    def printVolume(self):
+        print("Volume  : ", self.volume)
+
+    def printArea(self):
+        print("Surface Area : ", self.area)
+
+# Deriving Cylinder and Sphere classes
+
+
 class Cylinder(Shapes3D):
-  def __init__(self,r,h):
-    self.r = r
-    self.h = h
-    self.area = (2*3.14*r*h) + (2*3.14*r*r)
-    self.volume = (3.14*r*r*h)
+    def __init__(self, r, h):
+        self.r = r
+        self.h = h
+        self.area = (2*3.14*r*h) + (2*3.14*r*r)
+        self.volume = (3.14*r*r*h)
 
 
 class Sphere(Shapes3D):
-  def __init__(self,r):
-    self.r = r
-    self.area = 4*3.14*r*r
-    self.volume = (4/3)*3.14*(r**3)
+    def __init__(self, r):
+        self.r = r
+        self.area = 4*3.14*r*r
+        self.volume = (4/3)*3.14*(r**3)
 
 
-#main function
+# main function
 
 print("For cylinder : ")
 rC = int(input("Enter the radius : "))
 hC = int(input("Enter the height : "))
-C1 = Cylinder(rC,hC)
+C1 = Cylinder(rC, hC)
 C1.printVolume()
 C1.printArea()
 

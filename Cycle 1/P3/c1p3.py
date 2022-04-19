@@ -7,47 +7,52 @@ Original file is located at
     https://colab.research.google.com/drive/1BbP7LiT7BdECxGc57DMfnWE0_dJGki9L
 """
 
+
 def gross_salary(pay):
-  if pay <= 10000 :
-    gs = pay + pay*0.05 + pay*0.025 + 500
-  elif 10000 < pay <= 30000 :
-    gs = pay + pay*(0.075) + pay * 0.05 + 2500 
-  elif 30000 < pay <=  50000:
-    gs = pay + pay * 0.11 + pay * 0.075 + 5000
-  else:
-    gs = pay + pay*0.25 + pay*0.11 + 7000
-  return gs
+    if pay <= 10000:
+        gs = pay + pay*0.05 + pay*0.025 + 500
+    elif 10000 < pay <= 30000:
+        gs = pay + pay*(0.075) + pay * 0.05 + 2500
+    elif 30000 < pay <= 50000:
+        gs = pay + pay * 0.11 + pay * 0.075 + 5000
+    else:
+        gs = pay + pay*0.25 + pay*0.11 + 7000
+    return gs
+
 
 def Deduction(pay):
-  if pay <= 10000 :
-    d = 20 + pay
-  elif 10000 < pay <= 30000 :
-    d = 60 + pay*0.8 
-  elif 30000 < pay <=  50000:
-    d = 60 + pay*0.11 + pay*0.11
-  else:
-    d = 80 + pay*0.12 + pay*0.2
-  return d
+    if pay <= 10000:
+        d = 20 + pay
+    elif 10000 < pay <= 30000:
+        d = 60 + pay*0.8
+    elif 30000 < pay <= 50000:
+        d = 60 + pay*0.11 + pay*0.11
+    else:
+        d = 80 + pay*0.12 + pay*0.2
+    return d
 
-def NetSal(GS,D):
-  return (GS - D)
+
+def NetSal(GS, D):
+    return (GS - D)
+
 
 def paycheck():
-  Ename = input("Enter employee Name: ")
-  Ecode = int(input("Enter your code: "))
-  Bpay =float(input("Enter the basic pay: "))
+    Ename = input("Enter employee Name: ")
+    Ecode = int(input("Enter your code: "))
+    Bpay = float(input("Enter the basic pay: "))
 
-  Gsal = gross_salary(Bpay)
-  Ded = Deduction(Bpay)
-  Net = NetSal(Gsal,Ded)
+    Gsal = gross_salary(Bpay)
+    Ded = Deduction(Bpay)
+    Net = NetSal(Gsal, Ded)
 
-  print("\n\nPayslip \n:")
-  print("Employee Name :",Ename)
-  print("Employee Code :",Ecode)
-  print("\nSalary Details\n")
-  print("Basic Pay    : ",Bpay)
-  print("Gross Salary : ",Gsal)
-  print("Deduction    : ",Ded)
-  print("Net Salary   : ",Net)
+    print("\n\nPayslip \n:")
+    print("Employee Name :", Ename)
+    print("Employee Code :", Ecode)
+    print("\nSalary Details\n")
+    print("Basic Pay    : ", Bpay)
+    print("Gross Salary : ", Gsal)
+    print("Deduction    : ", Ded)
+    print("Net Salary   : ", Net)
+
 
 paycheck()
