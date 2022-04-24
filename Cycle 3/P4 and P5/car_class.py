@@ -12,7 +12,7 @@ report.
 https://pbpython.com/pdf-reports.html
 '''
 import pickle
-import pandas as pd
+from fpdf import FPDF
 
 #Designing a class to represent a vehicle
 class car:
@@ -57,6 +57,7 @@ class CarDetails:
         #lambda for sorting
         S_list = sorted(self.To_write_list,key = lambda x : x[3])
         Car_list_index = 0
+        self.To_write_list = S_list
         for i in S_list:
             A = car(i[0],i[1],i[2],i[3],i[4],i[5],i[6])
             self.Car_list[Car_list_index] = A
@@ -98,10 +99,19 @@ class CarDetails:
     def Filter_Data(self):
         print("1. Type\n2. RegNo\n 3. Owner Name\n")
         Data_choose = int(input("Choose a Data to filter : "))
-    def Create_report():
-        #Create a report using pandas
-        #Using lambda to sort the functions
-        pass
+    def Create_report(self,filename):
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Arial",size = 10)
+        pdf.cell(200,10,ln = 2,align = "C",txt = "No.\tEngNo.\tModel\tType\tMileage\tVendor\tRegNo.\tOwner\n")
+        
+        for entries in self.To_write_list:
+            add_text = ""
+            for data in entries:
+                add_text+=str(data)
+                add_text+="\t"
+            pdf.cell(200,10,ln = 2,align = "C",txt = add_text)
+        pdf.output(filename)
 
 def menu():
     print("1. Show all details of the collection")
@@ -109,7 +119,7 @@ def menu():
     print("3. Add\n4. Delete\n5. Modify\n")
     print("6. Save the details")
     print("7. Load previous details")
-    print("8. Filter and create a pdf report")
+    print("8. Create a pdf report")
     print("9. To Exit")
 
 def main():
@@ -147,7 +157,7 @@ def main():
         elif choice == 7:
             Vehicle_list.Load_from_file("data.dat")
         elif choice == 8:
-            pass
+            Vehicle_list.Create_report("report.pdf")
         elif choice == 9:
             Continue = False
         else:
