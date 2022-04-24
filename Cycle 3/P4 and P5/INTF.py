@@ -8,56 +8,85 @@ import pickle
 
 #Constants
 scr = Tk()
-scr.geometry("900x600+20+30")
-scr.configure(bg = "#E0E0E0")
+scr.geometry("900x400+20+30")
+scr.configure(bg = "#2B55A9")
 scr.title("Vehicle Sale Data")
+text= Label(scr, font=('Times New Roman',15,'bold'),text="VEHICLE DATA",bg="#2B55A9")
+text.pack()
 CarData = CarDetails() #Creating a object to store all car data
-DataFrame = LabelFrame(scr,text="Datas")
-DataFrame.pack(fill="x",expand="yes")
+DataFrame = LabelFrame(scr,text="Datas",bg = "#2B55A9")
+DataFrame.pack(expand="yes",side=RIGHT)
 CarDisplay = ttk.Treeview(DataFrame)
 
+def data_screen_frame():
+    count=0
+    #Setting the Data Table display
+    #Setting the display for data
+    CarDisplay['columns'] = ("EngNo","Model","Type","Mileage","Vendor","RegNo","Owner")
+    CarDisplay.column("#0",width=0,minwidth=3)
+    CarDisplay.column("EngNo",anchor = W,minwidth=10,width=50)
+    CarDisplay.column('Model',anchor = W,minwidth=10,width=50)
+    CarDisplay.column('Type',anchor = W,minwidth=10,width=50)
+    CarDisplay.column('Mileage',anchor = W,minwidth=20,width=50)
+    CarDisplay.column('Vendor',anchor = W,minwidth=20,width=50)
+    CarDisplay.column('RegNo',anchor = W,minwidth=20,width=50)
+    CarDisplay.column('Owner',anchor = W,minwidth=20,width=50)
+    #setting the headings
+    CarDisplay.heading("#0",text = " ",anchor=W )
+    CarDisplay.heading("EngNo",text = "Engine No.",anchor = W)
+    CarDisplay.heading("Model",text = "Model",anchor = W)
+    CarDisplay.heading("Type",text ="Type",anchor = W)
+    CarDisplay.heading("Mileage",text = "Mileage",anchor = W)
+    CarDisplay.heading("Vendor",text = "Vendor",anchor = W)
+    CarDisplay.heading("RegNo",text = "Reg. No.",anchor = W)
+    CarDisplay.heading("Owner",text = "Owner",anchor = W)
+    List_of_cars = CarData.To_write_list
+    for i in List_of_cars:
+        show_Values = tuple(i)
+        CarDisplay.insert(parent = "",index = 'end',values=show_Values)
+    CarDisplay.pack()
+   
 #Defining Button actions
 
 #Creating a frame for the Input details
-In_Frame = LabelFrame(scr,text = "Input",)
+In_Frame = LabelFrame(scr,text = "Input",bg = "#2B55A4")
 In_Frame.pack(fill="x",expand="yes",padx = 20)
 In_EngNo = StringVar(None)
 #Creating Labels and respective entry boxes
-In_EngNo_Label = Label(In_Frame,text = "Engine No")
+In_EngNo_Label = Label(In_Frame,text = "Engine No",bg='#A9FAFF')
 In_EngNo_Label.grid(row = 0,column=0,padx=10,pady=10)
 In_EngNo = Entry(In_Frame)
 In_EngNo.grid(row=0,column=1,padx=10,pady=10)
 
-In_Model_Label = Label(In_Frame,text = "Model")
+In_Model_Label = Label(In_Frame,text = "Model",bg='#A9FAFF')
 In_Model_Label.grid(row = 1,column=0,padx=10,pady=10)
 In_Model = Entry(In_Frame)
 In_Model.grid(row=1,column=1,padx=10,pady=10)
 
-In_Type_Label = Label(In_Frame,text = "Type")
+In_Type_Label = Label(In_Frame,text = "Type",bg='#A9FAFF')
 In_Type_Label.grid(row = 2,column=0,padx=10,pady=10)
 In_Type = Entry(In_Frame)
 In_Type.grid(row=2,column=1,padx=10,pady=10)
 
-In_Mileage_Label = Label(In_Frame,text = "Mileage")
+In_Mileage_Label = Label(In_Frame,text = "Mileage",bg='#A9FAFF')
 In_Mileage_Label.grid(row = 0,column=2,padx=10,pady=10)
 In_Mileage = Entry(In_Frame)
 In_Mileage.grid(row=0,column=3,padx=10,pady=10)
 
-In_Vendor_Label = Label(In_Frame,text = "Vendor")
+In_Vendor_Label = Label(In_Frame,text = "Vendor",bg='#A9FAFF')
 In_Vendor_Label.grid(row = 1,column=2,padx=10,pady=10)
 In_Vendor = Entry(In_Frame)
 In_Vendor.grid(row=1,column=3,padx=10,pady=10)
 
-In_Regno_Label = Label(In_Frame,text = "Reg No")
+In_Regno_Label = Label(In_Frame,text = "Reg No",bg='#A9FAFF')
 In_Regno_Label.grid(row = 2,column=2,padx=10,pady=10)
 In_RegNo = Entry(In_Frame)
 In_RegNo.grid(row=2,column=3,padx=10,pady=10)
 
-In_Owner_Label = Label(In_Frame,text = "Owner")
+In_Owner_Label = Label(In_Frame,text = "Owner",bg='#A9FAFF')
 In_Owner_Label.grid(row = 4,column=0,padx=10,pady=10)
 In_Owner = Entry(In_Frame)
 In_Owner.grid(row=4,column=1,padx=10,pady=10)
-
 
 def clear_inputs():
     #To clear the inputs on screen
@@ -93,33 +122,7 @@ def Delete_record():
     #To remove from CarData
     CarData.Delete_car(rec_values[5])
 
-def data_screen_frame():
-    count=0
-    #Setting the Data Table display
-    #Setting the display for data
-    CarDisplay['columns'] = ("EngNo","Model","Type","Mileage","Vendor","RegNo","Owner")
-    CarDisplay.column("#0",width=0,minwidth=3)
-    CarDisplay.column("EngNo",anchor = W,minwidth=10,width=50)
-    CarDisplay.column('Model',anchor = W,minwidth=10,width=50)
-    CarDisplay.column('Type',anchor = W,minwidth=10,width=50)
-    CarDisplay.column('Mileage',anchor = W,minwidth=20,width=50)
-    CarDisplay.column('Vendor',anchor = W,minwidth=20,width=50)
-    CarDisplay.column('RegNo',anchor = W,minwidth=20,width=50)
-    CarDisplay.column('Owner',anchor = W,minwidth=20,width=50)
-    #setting the headings
-    CarDisplay.heading("#0",text = " ",anchor=W )
-    CarDisplay.heading("EngNo",text = "Engine No.",anchor = W)
-    CarDisplay.heading("Model",text = "Model",anchor = W)
-    CarDisplay.heading("Type",text ="Type",anchor = W)
-    CarDisplay.heading("Mileage",text = "Mileage",anchor = W)
-    CarDisplay.heading("Vendor",text = "Vendor",anchor = W)
-    CarDisplay.heading("RegNo",text = "Reg. No.",anchor = W)
-    CarDisplay.heading("Owner",text = "Owner",anchor = W)
-    List_of_cars = CarData.To_write_list
-    for i in List_of_cars:
-        show_Values = tuple(i)
-        CarDisplay.insert(parent = "",index = 'end',values=show_Values)
-    CarDisplay.pack()
+
 
 def Add_the_record():
     add_data = (In_EngNo.get(),In_Model.get(),In_Type.get(),
@@ -159,36 +162,37 @@ def Save_as_pdf():
     CarData.Create_report(scr.filename)
 
 def Buttons_Frame():
-    ButtonFrame = LabelFrame(scr,text = "Options")
-    ButtonFrame.pack(padx=20)
+    ButtonFrame = LabelFrame(scr,text = "Options",bg = "#2B55A9")
+    ButtonFrame.pack()
 
-    AddRec_button = Button(ButtonFrame,text = "Add",command=Add_the_record)
+    AddRec_button = Button(ButtonFrame,text = "Add",command=Add_the_record,activebackground='#FFA9A9',bg='#A9FAFF')
     AddRec_button.grid(row=0,column=0,padx=10,pady=10)
 
-    Modify_button = Button(ButtonFrame,text = "Modify")
+    Modify_button = Button(ButtonFrame,text = "Modify",activebackground='#FFA9A9',bg='#A9FAFF')
     Modify_button.grid(row=1,column=0,padx=10,pady=10)
 
-    Open_button = Button(ButtonFrame,text = "Open File",command=Load_File)
+    Open_button = Button(ButtonFrame,text = "Open File",command=Load_File,activebackground='#FFA9A9',bg='#A9FAFF')
     Open_button.grid(row=2,column=0,padx=10,pady=10)
 
-    Sort_button = Button(ButtonFrame,text = "Sort by Mileage",command=Sort_mileage)
+    Sort_button = Button(ButtonFrame,text = "Sort by Mileage",command=Sort_mileage,activebackground='#FFA9A9',bg='#A9FAFF')
     Sort_button.grid(row=0,column=1,padx=10,pady=10)
 
-    Delete_button = Button(ButtonFrame,text = "Delete Entry",command=Delete_record)
+    Delete_button = Button(ButtonFrame,text = "Delete Entry",command=Delete_record,activebackground='#FFA9A9',bg='#A9FAFF')
     Delete_button.grid(row=1,column=1,padx=10,pady=10)
 
-    Save_button = Button(ButtonFrame,text = "Save Data",command=Save_File)
+    Save_button = Button(ButtonFrame,text = "Save Data",command=Save_File,activebackground='#FFA9A9',bg='#A9FAFF')
     Save_button.grid(row=2,column=1,padx=10,pady=10)
 
-    Report_button = Button(ButtonFrame,text = "Save PDF",command=Save_as_pdf)
+    Report_button = Button(ButtonFrame,text = "Save PDF",command=Save_as_pdf,activebackground='#FFA9A9',bg='#A9FAFF')
     Report_button.grid(row=0,column=3,padx=10,pady=10)
 
-    Show_button = Button(ButtonFrame,text = "Show Selection",command=add_to_entry_box)
+    Show_button = Button(ButtonFrame,text = "Show Selection",command=add_to_entry_box,activebackground='#FFA9A9',bg='#A9FAFF')
     Show_button.grid(row=1,column=3,padx=10,pady=10)
 
-    Clear_Button = Button(ButtonFrame,text = "Clear",command=clear_inputs)
+    Clear_Button = Button(ButtonFrame,text = "Clear",command=clear_inputs,activebackground='#FFA9A9',bg='#A9FAFF')
     Clear_Button.grid(row=2,column=3,padx=10,pady=10)
 
-data_screen_frame()
 Buttons_Frame()
+
+data_screen_frame() 
 scr.mainloop()

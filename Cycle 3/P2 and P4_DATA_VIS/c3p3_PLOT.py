@@ -10,6 +10,7 @@ data = pd.read_csv("iris.csv")
 #Plotting bar graph with frequencies
 Species_list = data['Species'].value_counts()
 Species_list.plot(kind = "bar",xlabel = 'frequency',ylabel= 'species')
+plt.title("Species Frequency")
 plt.show()
 
 '''PLOTTING SCATTER PLOT'''
@@ -45,7 +46,8 @@ colors = ['r','g','b']
 for target,color in  zip(targets,colors):
     indices_to_Keep = data['Species'] == target
     plt.scatter(principal_iris_DF.loc[indices_to_Keep,'PC1'],
-    principal_iris_DF.loc[indices_to_Keep,"PC2"],c = color)
+    principal_iris_DF.loc[indices_to_Keep,"PC2"],c = color,label = target )
+plt.legend()
 plt.show()
 '''PLOTTING OF EACH ATTRIBUTE AS A HISTOGRAM'''
 #To show each attribute as a histogram

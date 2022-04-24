@@ -85,14 +85,9 @@ class CarDetails:
             print(RegNo,"is not a valid parameter")
     def Save_Details(self,filename):
         #Save as a pickle file
-        #opening in append binary mode
+        #opening in write binary mode
         Details = open(filename,"wb")
         Details.truncate()
-        #Creating a list of list of car detiails
-        for i in self.Car_list:
-            Car_det = [i.C_EngNo,i.C_Model,i.C_Type,i.C_Mileage,i.C_Vendor,i.C_RegNo]
-            Car_det.append(i.C_OwnName)
-            self.To_write_list.append(Car_det)
         print(self.To_write_list)
         pickle.dump(self.To_write_list,Details)
         Details.close()
@@ -116,7 +111,7 @@ class CarDetails:
 def menu():
     print("1. Show all details of the collection")
     print("2. Sort according to mileage")
-    print("3. Add\n4. Delete\n5. Modify\n")
+    print("3. Add\n4. Delete\n5. Modify")
     print("6. Save the details")
     print("7. Load previous details")
     print("8. Create a pdf report")
