@@ -193,6 +193,5 @@ def Buttons_Frame():
     Clear_Button.grid(row=2,column=3,padx=10,pady=10)
 
 Buttons_Frame()
-
 data_screen_frame() 
 scr.mainloop()

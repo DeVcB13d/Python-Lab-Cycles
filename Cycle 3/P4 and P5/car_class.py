@@ -91,9 +91,6 @@ class CarDetails:
         print(self.To_write_list)
         pickle.dump(self.To_write_list,Details)
         Details.close()
-    def Filter_Data(self):
-        print("1. Type\n2. RegNo\n 3. Owner Name\n")
-        Data_choose = int(input("Choose a Data to filter : "))
     def Create_report(self,filename):
         pdf = FPDF()
         pdf.add_page()
